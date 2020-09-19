@@ -24,7 +24,7 @@ class StaffListRetriever {
         service = retrofit.create(MedicalListService::class.java)
     }
 
-    fun getRepositories(callback: Callback<StaffListResult>) {
+    fun getMedicalStaff(callback: Callback<StaffListResult>) {
         //4
         service.retrieveMedicalStaff().enqueue(callback)
     }
