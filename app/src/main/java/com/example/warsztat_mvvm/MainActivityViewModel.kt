@@ -14,18 +14,22 @@ import retrofit2.Response
 interface ViewModelCallbackSupporting {
     fun onListFetchedSuccessful(data: StaffListResult?)
 }
-
+//klasa MainActivityViewModel przyjmuje obiekt typu ViewModelCallbackSupporting
 class MainActivityViewModel(delegate: ViewModelCallbackSupporting) {
 
+    //stworzenie nowego retrivera z package api
     private val apiRetriever = StaffListRetriever()
     var title = "Medical Staff Available"
 
+    //Callback?
     private val onDataRetrieved = object : Callback<StaffListResult> {
+        //Call?
         override fun onFailure(call: Call<StaffListResult>?, t: Throwable?) {
             Log.e("MainActivity", "Problem calling MedStaff API ${t?.message}")
         }
 
         override fun onResponse(
+            //Call?
             call: Call<StaffListResult>?,
             response: Response<StaffListResult>?
         ) {

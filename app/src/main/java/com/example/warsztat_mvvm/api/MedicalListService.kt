@@ -7,5 +7,6 @@ import retrofit2.http.GET
 
 interface MedicalListService {
     @GET("stafflist")
+    // Call?
     fun retrieveMedicalStaff(): Call<StaffListResult>
 }

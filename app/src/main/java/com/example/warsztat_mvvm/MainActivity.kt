@@ -10,8 +10,10 @@ import com.example.warsztat_mvvm.adapters.MedicalStaffListAdapter
 import com.example.warsztat_mvvm.models.StaffListResult
 import kotlinx.android.synthetic.main.activity_main.*
 
+//MainActivity implementuje interfejs ViewModelCallbackSupporting
 class MainActivity : AppCompatActivity(), ViewModelCallbackSupporting {
 
+    //stworzenie ViewModel i podanie MainActivity jako parametr funkcji
     val viewModel = MainActivityViewModel(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +30,12 @@ class MainActivity : AppCompatActivity(), ViewModelCallbackSupporting {
         medicalStaffList.layoutManager = LinearLayoutManager(this)
     }
 
+    //ViewModelCallbackSupporting zawiera abstract function, ktorej body zostaje stworzone w tym miejscu
     override fun onListFetchedSuccessful(data: StaffListResult?) {
+        //jezeli data.staffMembers nie jest null to return staffmembers else emptylist
+        // StaffListResult jest w StaffMember
         val resultList = StaffListResult(data?.staffMembers ?: emptyList())
+        //resultList -> MedicalStaffListAdapter przygotowuje wygląd -> wygląd trafia do RecyclerView w layoucie i wyśwtetlany na ekranie
         medicalStaffList.adapter = MedicalStaffListAdapter(resultList)
     }
 
